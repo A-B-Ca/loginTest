@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <form action="/" method="post">
+
+        <h2 th:text="${message}"></h2>
+
+        <label for="username">Your username</label>
+        <!-- Make sure to put "required" for both the input fields -->
+        <input type="text" id="username" placeholder="Enter Username" name="username" required>
+
+        <br><br>
+
+        <!-- Password -->
+        <label for="password">Your password</label>
+        <input type="password" id="password" placeholder="Enter Password" name="password" required>
+
+        <button type="Submit">Login</button>
+
+    </form>
+</body>
+</html>
