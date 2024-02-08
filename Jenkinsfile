@@ -25,12 +25,36 @@ pipeline {
                 //}
             }
         }
+        stage('Package') {
+                            steps {
+                                sh 'mvn package'
+                            }
+                        }
+        stage('Build and create  DOcker Image') {
+                    steps {
+                        sh 'docker build -t loginT .'
+                    }
+                }
+        stage('Docker login') {
+                            steps {
+
+                            withCredentials([string(credentialsId: 'dockerid', variable: 'dpassword')]) {
+                                sh 'docker login -u abcanada -p ${dpassword}'
+                            }
+
+                            }
+                        }
+        stage('Docker push to repo') {
+                            steps {
+                                sh 'docker push loginT'
+                            }
+                        }
 
         stage('Deploy') {
             steps {
                 // Navigate to the 'target' directory and run the Spring Boot application
                 //dir('loginTest/target') {
-                    sh 'java -jar LoginWeb-0.0.1-SNAPSHOT.jar'
+                    sh 'docker run -p 8084:8084 loginT'
                 //}
             }
         }
