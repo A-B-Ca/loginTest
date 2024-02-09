@@ -38,10 +38,9 @@ pipeline {
         stage('Docker login') {
                             steps {
 
-                            withCredentials([string(credentialsId: 'dockerid', variable: 'dpassword')]) {
-                                sh 'docker login -u abcanada -p ${dpassword}'
+                            withCredentials([string(credentialsId: 'Dockerid', variable: 'dockerid')]) {
+                                sh 'docker login -u abcanada -p ${dockerid}'
                             }
-
                             }
                         }
         stage('Docker push to repo') {
