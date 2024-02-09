@@ -32,7 +32,7 @@ pipeline {
                         }
         stage('Build and create  DOcker Image') {
                     steps {
-                        sh 'docker build -t loginT .'
+                        sh 'docker build -t login .'
                     }
                 }
         stage('Docker login') {
@@ -46,7 +46,7 @@ pipeline {
                         }
         stage('Docker push to repo') {
                             steps {
-                                sh 'docker push loginT'
+                                sh 'docker push login'
                             }
                         }
 
@@ -54,7 +54,7 @@ pipeline {
             steps {
                 // Navigate to the 'target' directory and run the Spring Boot application
                 //dir('loginTest/target') {
-                    sh 'docker run -p 8084:8084 loginT'
+                    sh 'docker run -p 8084:8084 login'
                 //}
             }
         }
