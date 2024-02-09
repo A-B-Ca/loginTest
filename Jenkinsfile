@@ -45,7 +45,7 @@ pipeline {
                         }
         stage('Docker push to repo') {
                             steps {
-                                sh 'docker push login'
+                                sh 'docker push abcanada/login'
                             }
                         }
 
