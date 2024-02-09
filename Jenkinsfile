@@ -32,21 +32,21 @@ pipeline {
                         }
         stage('Build and create  DOcker Image') {
                     steps {
-                        sh 'sudo docker build -t loginT .'
+                        sh 'docker build -t loginT .'
                     }
                 }
         stage('Docker login') {
                             steps {
 
                             withCredentials([string(credentialsId: 'dockerid', variable: 'dpassword')]) {
-                                sh 'sudo docker login -u abcanada -p ${dpassword}'
+                                sh 'docker login -u abcanada -p ${dpassword}'
                             }
 
                             }
                         }
         stage('Docker push to repo') {
                             steps {
-                                sh 'sudo docker push loginT'
+                                sh 'docker push loginT'
                             }
                         }
 
@@ -54,7 +54,7 @@ pipeline {
             steps {
                 // Navigate to the 'target' directory and run the Spring Boot application
                 //dir('loginTest/target') {
-                    sh 'sudo docker run -p 8084:8084 loginT'
+                    sh 'docker run -p 8084:8084 loginT'
                 //}
             }
         }
