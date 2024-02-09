@@ -44,10 +44,11 @@ pipeline {
                             }
                         }
         stage('Docker push to repo') {
-                            steps {
-                                sh 'docker push abcanada/login'
-                            }
-                        }
+            steps {
+                sh 'docker tag login abcanada/login:latest'
+                sh 'docker push abcanada/login:latest'
+            }
+        }
 
         stage('Deploy') {
             steps {
