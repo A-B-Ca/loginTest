@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-ADD LoginWeb-0.0.1-SNAPSHOT.jar /app/
+ADD target/LoginWeb-0.0.1-SNAPSHOT.jar /app/
 
 WORKDIR /app
 
